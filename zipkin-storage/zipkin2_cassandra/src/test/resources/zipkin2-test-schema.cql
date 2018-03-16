@@ -41,13 +41,12 @@ CREATE TABLE IF NOT EXISTS stress_zipkin2.span_by_service (
     WITH compaction = {'class': 'org.apache.cassandra.db.compaction.LeveledCompactionStrategy', 'unchecked_tombstone_compaction': 'true', 'tombstone_threshold': '0.2'}
     AND default_time_to_live =  259200;
 
-CREATE CUSTOM INDEX IF NOT EXISTS ON stress_zipkin2.span (annotation_query) USING 'org.apache.cassandra.index.sasi.SASIIndex'
+CREATE CUSTOM INDEX IF NOT EXISTS ON zipkin2.span (annotation_query) USING 'org.apache.cassandra.index.sasi.SASIIndex'
    WITH OPTIONS = {
-    'mode': 'CONTAINS',
+    'mode': 'PREFIX',
     'analyzed': 'true',
-    'analyzer_class':'org.apache.cassandra.index.sasi.analyzer.NonTokenizingAnalyzer',
-    'case_sensitive': 'false'
-   };
+    'analyzer_class':'org.apache.cassandra.index.sasi.analyzer.DelimiterAnalyzer',
+    'delimiter': '░'};
 
 CREATE CUSTOM INDEX IF NOT EXISTS ON stress_zipkin2.span (l_service) USING 'org.apache.cassandra.index.sasi.SASIIndex'
    WITH OPTIONS = {'mode': 'PREFIX'};
