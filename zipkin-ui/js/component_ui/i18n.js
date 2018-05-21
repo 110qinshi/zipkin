@@ -14,6 +14,7 @@ export function i18nInit(file) {
     // do not perform blocking XHR requests, as it blocks the entire browser, including
     // rendering
     async: true,
+    language: 'zh_CN',
     callback: () => {
       $('[data-i18n]').each((index, item) => {
         if (item.tagName === 'INPUT' || item.tagName === 'SELECT') {

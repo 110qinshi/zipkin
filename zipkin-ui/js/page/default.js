@@ -88,7 +88,7 @@ const DefaultPageComponent = component(function DefaultPage() {
       TimeStampUI.attachTo('#end-ts');
       TimeStampUI.attachTo('#start-ts');
       BackToTop.attachTo('#backToTop');
-      i18nInit('traces_zh_CN');
+      i18nInit('traces');
 
       $('.timeago').timeago();
 
