@@ -10,7 +10,6 @@ export function i18nInit(file) {
     mode: 'map',
     // do not append a unix timestamp when requesting the language (.properties) files
     // this allows them to be cached by the browser
-    cache: true,
     // do not perform blocking XHR requests, as it blocks the entire browser, including
     // rendering
     async: true,
