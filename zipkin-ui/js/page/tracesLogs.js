@@ -13,5 +13,5 @@ const TraceLogsPageComponent = component(function TraceLogsPage(){
 });
 
 export default function initializeTrace(config) {
-  TraceViewerPageComponent.attachTo('.content', {config});
+  TraceLogsPageComponent.attachTo('.content', {config});
 }

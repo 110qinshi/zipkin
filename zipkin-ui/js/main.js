@@ -25,7 +25,7 @@ loadConfig().then(config => {
   crossroads.addRoute(`${contextRoot}traces/{id}`, traceId => initializeTrace(traceId, config));
   crossroads.addRoute(`${contextRoot}traceViewer`, () => initializeTraceViewer(config));
   crossroads.addRoute(`${contextRoot}dependency`, () => initializeDependency(config));
-  crossroads.addRoute(`${contextRoot}tracesLogs`, () => initializeTraceLogs(config))
+  crossroads.addRoute(`${contextRoot}tracesLogs`, () => initializeTraceLogs(config));
   crossroads.parse(window.location.pathname);
 }, e => {
   // TODO: better error message, but this is better than a blank screen...
