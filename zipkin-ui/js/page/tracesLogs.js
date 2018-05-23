@@ -1,7 +1,7 @@
 import {component} from 'flightjs';
 
 const TraceLogsPageComponent = component(function TraceLogsPage() {
-  /*eslint prefer-arrow-callback: ["error", { "allowNamedFunctions": true }]*/
+  /* eslint prefer-arrow-callback: ["error", { "allowNamedFunctions": true }] */
   this.after('initialize', function() {
     console.log('xxx');
   });
