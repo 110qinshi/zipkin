@@ -1,16 +1,16 @@
 import {component} from 'flightjs';
-import ServiceFilterSearchUI from "../component_ui/serviceFilterSearch";
-import ZoomOut from "../component_ui/zoomOutSpans";
-import {traceTemplate} from "../templates";
-import $ from "jquery";
-import SpanPanelUI from "../component_ui/spanPanel";
-import FilterAllServicesUI from "../component_ui/filterAllServices";
-import JsonPanelUI from "../component_ui/jsonPanel";
-import TraceUI from "../component_ui/trace";
-import FullPageSpinnerUI from "../component_ui/fullPageSpinner";
-import FilterLabelUI from "../component_ui/filterLabel";
-import {contextRoot} from "../publicPath";
-import TraceData from "../component_data/trace";
+import ServiceFilterSearchUI from '../component_ui/serviceFilterSearch';
+import ZoomOut from '../component_ui/zoomOutSpans';
+import {traceTemplate} from '../templates';
+import $ from 'jquery';
+import SpanPanelUI from '../component_ui/spanPanel';
+import FilterAllServicesUI from '../component_ui/filterAllServices';
+import JsonPanelUI from '../component_ui/jsonPanel';
+import TraceUI from '../component_ui/trace';
+import FullPageSpinnerUI from '../component_ui/fullPageSpinner';
+import FilterLabelUI from '../component_ui/filterLabel';
+import {contextRoot} from '../publicPath';
+import TraceData from '../component_data/trace';
 
 const TraceLogsPageComponent = component(function TraceLogsPage() {
   this.after('initialize', function() {
