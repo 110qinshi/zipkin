@@ -3,12 +3,12 @@ import {tracesLogsTemplate} from '../templates';
 import {contextRoot} from "../publicPath";
 const TraceLogsPageComponent = component(function TraceLogsPage(){
   this.after('initialize', function() {
-    this.on(document, 'traceLogsPageModelView', function(ev, data) {
-      this.$node.html(tracesLogsTemplate({
-        contextRoot,
-        ...data.modelview
-      }));
-    });
+    // this.on(document, 'traceLogsPageModelView', function(ev, data) {
+    //   this.$node.html(tracesLogsTemplate({
+    //     contextRoot,
+    //     ...data.modelview
+    //   }));
+    // });
   });
 });
 
