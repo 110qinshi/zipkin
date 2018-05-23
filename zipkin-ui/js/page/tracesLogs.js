@@ -1,7 +1,7 @@
 import {component} from 'flightjs';
 
 const TraceLogsPageComponent = component(function TraceLogsPage() {
-  this.after('initialize', function () {
+  this.after('initialize', function() {
     console.log('xxx');
   });
 });
