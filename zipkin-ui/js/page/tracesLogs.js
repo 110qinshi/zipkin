@@ -15,7 +15,7 @@ import TraceLogData from '../component_data/tracesLogs';
 const TraceLogsPageComponent = component(function TraceLogsPage() {
   this.after('initialize', function() {
     window.document.title = 'Zipkin - Logs';
-    TraceLogData.attachTo(document, {});
+
     this.on(document, 'traceLogPageModelView', function(ev, data) {
       console.log('traceLogPageModelView execute');
       this.$node.html(traceTemplate({
@@ -45,6 +45,7 @@ const TraceLogsPageComponent = component(function TraceLogsPage() {
 
       $('.annotation:not(.core)').tooltip({placement: 'left'});
     });
+    TraceLogData.attachTo(document, {});
   });
 });
 
