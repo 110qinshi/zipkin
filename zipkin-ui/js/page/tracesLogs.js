@@ -10,16 +10,11 @@ import TraceUI from '../component_ui/trace';
 import FullPageSpinnerUI from '../component_ui/fullPageSpinner';
 import FilterLabelUI from '../component_ui/filterLabel';
 import {contextRoot} from '../publicPath';
-import TraceData from '../component_data/trace';
 
 const TraceLogsPageComponent = component(function TraceLogsPage() {
   this.after('initialize', function() {
-    window.document.title = 'Zipkin - Traces';
+    window.document.title = 'Zipkin - Logs';
 
-    TraceData.attachTo(document, {
-      traceId: this.attr.traceId,
-      logsUrl: this.attr.config('logsUrl')
-    });
     this.on(document, 'tracePageModelView', function(ev, data) {
       this.$node.html(traceTemplate({
         contextRoot,
