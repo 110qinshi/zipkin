@@ -1,7 +1,7 @@
 import {component} from 'flightjs';
 import ServiceFilterSearchUI from '../component_ui/serviceFilterSearch';
 import ZoomOut from '../component_ui/zoomOutSpans';
-import {traceTemplate} from '../templates';
+import {tracesLogsTemplate} from '../templates';
 import $ from 'jquery';
 import SpanPanelUI from '../component_ui/spanPanel';
 import FilterAllServicesUI from '../component_ui/filterAllServices';
@@ -18,7 +18,7 @@ const TraceLogsPageComponent = component(function TraceLogsPage() {
 
     this.on(document, 'traceLogPageModelView', function(ev, data) {
       console.log('traceLogPageModelView execute');
-      this.$node.html(traceTemplate({
+      this.$node.html(tracesLogsTemplate({
         contextRoot,
         ...data.modelview
       }));
