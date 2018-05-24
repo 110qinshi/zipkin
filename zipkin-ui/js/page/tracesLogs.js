@@ -17,11 +17,12 @@ const TraceLogsPageComponent = component(function TraceLogsPage() {
     window.document.title = 'Zipkin - Logs';
     TraceLogData.attachTo(document, {});
     this.on(document, 'traceLogPageModelView', function(ev, data) {
+      console.log('traceLogPageModelView execute');
       this.$node.html(traceTemplate({
         contextRoot,
         ...data.modelview
       }));
-      console.log('traceLogPageModelView execute');
+
       FilterAllServicesUI.attachTo('#filterAllServices', {
         totalServices: $('.trace-details.services span').length
       });
