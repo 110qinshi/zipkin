@@ -21,7 +21,7 @@ const TraceLogsPageComponent = component(function TraceLogsPage() {
         contextRoot,
         ...data.modelview
       }));
-
+      console.log("tracePageModelView execute");
       FilterAllServicesUI.attachTo('#filterAllServices', {
         totalServices: $('.trace-details.services span').length
       });
