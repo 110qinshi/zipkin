@@ -9,7 +9,7 @@ export function toContextualLogsUrl(logsUrl, traceId) {
 
 export default component(function TraceData() {
   this.after('initialize', function() {
-    this.trigger('tracePageModelView', {});
-    console.log('log tracePageModelView');
+    this.trigger('traceLogPageModelView', {});
+    console.log('log traceLogPageModelView');
   });
 });
