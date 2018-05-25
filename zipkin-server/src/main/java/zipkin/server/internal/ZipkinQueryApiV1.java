@@ -165,12 +165,12 @@ public class ZipkinQueryApiV1 {
               String respBody = res.body().string();
               System.out.println("service.substring(index+1) response:"+ respBody);
               map.put("response", respBody);
-              map.put("UP", respBody.indexOf("UP") != -1? true: false);
+              map.put("UP", respBody.indexOf("UP") != -1? "正常": "异常");
             }else {
-              map.put("UP", false);
+              map.put("UP", "异常");
             }
           } catch (IOException e) {
-            map.put("UP", false);
+            map.put("UP", "异常");
           }finally {
             serviceHost.add(map);
           }
