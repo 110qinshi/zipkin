@@ -10,7 +10,7 @@ const TraceLogsPageComponent = component(function TraceLogsPage() {
     window.document.title = 'Zipkin - Logs';
 
     this.on(document, 'traceLogPageModelView', function(ev, data) {
-      console.log('traceLogPageModelView execute' + data);
+      console.log('traceLogPageModelView execute');
       this.$node.html(tracesLogsTemplate({
         contextRoot,
         ...data.modelview
