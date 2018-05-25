@@ -13,9 +13,17 @@
  */
 package zipkin.server.internal;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -121,20 +129,47 @@ public class ZipkinQueryApiV1 {
     return new String(Codec.JSON.writeSpans(trace), UTF_8);
   }
 
+  OkHttpClient.Builder builder = new OkHttpClient.Builder();
+  {
+    builder.connectTimeout(2000, TimeUnit.MILLISECONDS);
+    builder.readTimeout(2000, TimeUnit.MILLISECONDS);
+    builder.writeTimeout(2000, TimeUnit.MILLISECONDS);
+  }
+
+  OkHttpClient okHttpClient = builder.build();
+
   /**
    * 各个服务状态
    * @return
    */
   @RequestMapping(value = "/service/status", method = RequestMethod.GET)
-  public ResponseEntity<List<String>> serverStatus() {
+  public ResponseEntity<Map<String, Map<String, Object>>> serverStatus() {
     ResponseEntity.BodyBuilder response = ResponseEntity.ok();
     ResponseEntity<List<String>>  serveiceNames = getServiceNames();
-    List<String> serviceHost = new ArrayList<>();
+    Map<String, Map<String, Object>> serviceHost = new HashMap<>();
     if(serveiceNames != null && serveiceNames.getBody() != null){
       for(String service : serveiceNames.getBody()) {
-        int index = service.indexOf(":");
+        int index = service.indexOf("#");
         if(index != -1){
-          serviceHost.add(service.substring(index+1));
+          Map<String, Object> map = new HashMap<>();
+          serviceHost.put(service.substring(index+1), map);
+
+          Request request = new Request.Builder()
+            .url("http://"+service.substring(index+1)+"/health")
+            .build();
+
+          Call call = okHttpClient.newCall(request);
+          try {
+            Response res = call.execute();
+            if(res.code() == org.apache.http.HttpStatus.SC_OK){
+              String respBody = res.body().string();
+              System.out.println("service.substring(index+1) response:"+ respBody);
+              map.put("response", respBody);
+              map.put("UP", respBody.indexOf("UP") != -1? true: false);
+            }
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
         }
       }
     }
