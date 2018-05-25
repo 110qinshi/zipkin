@@ -11,6 +11,7 @@ const TraceLogsPageComponent = component(function TraceLogsPage() {
 
     this.on(document, 'traceLogPageModelView', function(ev, data) {
       console.log('traceLogPageModelView execute');
+      debugger;
       this.$node.html(tracesLogsTemplate({
         contextRoot,
         ...data.modelview
