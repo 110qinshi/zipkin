@@ -10,7 +10,7 @@ import ZoomOut from '../component_ui/zoomOutSpans';
 import UploadTraceUI from '../component_ui/uploadTrace';
 import {traceViewerTemplate} from '../templates';
 import {contextRoot} from '../publicPath';
-import {i18nInit} from "../component_ui/i18n";
+import {i18nInit} from '../component_ui/i18n';
 
 const TraceViewerPageComponent = component(function TraceViewerPage() {
   this.render = function(model) {

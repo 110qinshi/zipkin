@@ -11,7 +11,7 @@ import FilterLabelUI from '../component_ui/filterLabel';
 import ZoomOut from '../component_ui/zoomOutSpans';
 import {traceTemplate} from '../templates';
 import {contextRoot} from '../publicPath';
-import {i18nInit} from "../component_ui/i18n";
+import {i18nInit} from '../component_ui/i18n';
 
 const TracePageComponent = component(function TracePage() {
   this.after('initialize', function() {
