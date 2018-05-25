@@ -8,8 +8,8 @@ export default component(function TraceData() {
       type: 'GET',
       dataType: 'json'
     }).done(trace => {
-      this.trigger(document, 'traceLogPageModelView', {name: '55'});
-      console.log('log traceLogPageModelView'+ trace);
+      this.trigger(document, 'traceLogPageModelView', {name: trace});
+      console.log('log traceLogPageModelView');
     }).fail(e => {
       this.trigger('uiServerError',
         getError('Cannot load trace', e));
