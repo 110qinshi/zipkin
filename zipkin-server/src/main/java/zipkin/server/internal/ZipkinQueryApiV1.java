@@ -13,6 +13,7 @@
  */
 package zipkin.server.internal;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,6 +119,27 @@ public class ZipkinQueryApiV1 {
       throw new TraceNotFoundException(traceIdHex, traceIdHigh, traceIdLow);
     }
     return new String(Codec.JSON.writeSpans(trace), UTF_8);
+  }
+
+  /**
+   * 各个服务状态
+   * @return
+   */
+  @RequestMapping(value = "/service/status", method = RequestMethod.GET)
+  public ResponseEntity<List<String>> serverStatus() {
+    ResponseEntity.BodyBuilder response = ResponseEntity.ok();
+    ResponseEntity<List<String>>  serveiceNames = getServiceNames();
+    List<String> serviceHost = new ArrayList<>();
+    if(serveiceNames != null && serveiceNames.getBody() != null){
+      for(String service : serveiceNames.getBody()) {
+        int index = service.indexOf(":");
+        if(index != -1){
+          serviceHost.add(service.substring(index+1));
+        }
+      }
+    }
+
+    return response.body(serviceHost);
   }
 
   @ExceptionHandler(TraceNotFoundException.class)
