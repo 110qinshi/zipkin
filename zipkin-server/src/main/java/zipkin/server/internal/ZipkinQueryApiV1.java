@@ -152,7 +152,7 @@ public class ZipkinQueryApiV1 {
         int index = service.indexOf("#");
         if(index != -1){
           Map<String, Object> map = new HashMap<>();
-          serviceHost.put(service.substring(index+1), map);
+          serviceHost.put(service, map);
 
           Request request = new Request.Builder()
             .url("http://"+service.substring(index+1)+"/health")
@@ -166,9 +166,11 @@ public class ZipkinQueryApiV1 {
               System.out.println("service.substring(index+1) response:"+ respBody);
               map.put("response", respBody);
               map.put("UP", respBody.indexOf("UP") != -1? true: false);
+            }else {
+              map.put("UP", false);
             }
           } catch (IOException e) {
-            e.printStackTrace();
+            map.put("UP", false);
           }
         }
       }

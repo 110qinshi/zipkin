@@ -1,3 +1,4 @@
+// eslint-disable no-nested-ternary
 import {component} from 'flightjs';
 import {tracesLogsTemplate} from '../templates';
 import $ from 'jquery';
@@ -9,7 +10,7 @@ const TraceLogsPageComponent = component(function TraceLogsPage() {
     window.document.title = 'Zipkin - Logs';
 
     this.on(document, 'traceLogPageModelView', function(ev, data) {
-      console.log('traceLogPageModelView execute');
+      console.log('traceLogPageModelView execute' + data);
       this.$node.html(tracesLogsTemplate({
         contextRoot,
         ...data.modelview
