@@ -11,6 +11,7 @@ import FilterLabelUI from '../component_ui/filterLabel';
 import ZoomOut from '../component_ui/zoomOutSpans';
 import {traceTemplate} from '../templates';
 import {contextRoot} from '../publicPath';
+import {i18nInit} from "../component_ui/i18n";
 
 const TracePageComponent = component(function TracePage() {
   this.after('initialize', function() {
@@ -36,6 +37,7 @@ const TracePageComponent = component(function TracePage() {
       TraceUI.attachTo('#trace-container');
       FilterLabelUI.attachTo('.service-filter-label');
       ZoomOut.attachTo('#zoomOutSpans');
+      i18nInit('traces');
 
       this.$node.find('#traceJsonLink').click(e => {
         e.preventDefault();
