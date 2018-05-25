@@ -143,16 +143,16 @@ public class ZipkinQueryApiV1 {
    * @return
    */
   @RequestMapping(value = "/service/status", method = RequestMethod.GET)
-  public ResponseEntity<Map<String, Map<String, Object>>> serverStatus() {
+  public ResponseEntity<List<Map<String, Object>>> serverStatus() {
     ResponseEntity.BodyBuilder response = ResponseEntity.ok();
     ResponseEntity<List<String>>  serveiceNames = getServiceNames();
-    Map<String, Map<String, Object>> serviceHost = new HashMap<>();
+    List<Map<String, Object>> serviceHost = new ArrayList<>();
     if(serveiceNames != null && serveiceNames.getBody() != null){
       for(String service : serveiceNames.getBody()) {
         int index = service.indexOf("#");
         if(index != -1){
           Map<String, Object> map = new HashMap<>();
-          serviceHost.put(service, map);
+          map.put("service", service);
 
           Request request = new Request.Builder()
             .url("http://"+service.substring(index+1)+"/health")
@@ -171,6 +171,8 @@ public class ZipkinQueryApiV1 {
             }
           } catch (IOException e) {
             map.put("UP", false);
+          }finally {
+            serviceHost.add(map);
           }
         }
       }

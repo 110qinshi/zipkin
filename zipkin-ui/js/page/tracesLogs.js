@@ -14,7 +14,7 @@ const TraceLogsPageComponent = component(function TraceLogsPage() {
       debugger;
       this.$node.html(tracesLogsTemplate({
         contextRoot,
-        ...data.modelview
+        ...data
       }));
 
       this.$node.find('#traceJsonLink').click(e => {
