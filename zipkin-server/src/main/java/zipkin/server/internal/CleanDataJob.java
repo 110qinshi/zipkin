@@ -120,6 +120,6 @@ public class CleanDataJob {
         e.printStackTrace();
       }
     };
-    scheduledExecutorService.scheduleWithFixedDelay(job, 1, 6, TimeUnit.SECONDS);
+    scheduledExecutorService.scheduleWithFixedDelay(job, 10, ONE_DAY_TIME, TimeUnit.SECONDS);
   }
 }
