@@ -93,14 +93,20 @@ public class CleanDataJob {
                 Date date = dateFormat.parse(key+" 00:00:00");
 
                 System.out.println("dateTime:"+date.getTime());
-
+                System.out.println("interval time:"+(System.currentTimeMillis() - date.getTime()));
                 if((System.currentTimeMillis()-date.getTime()) > ((SAVE_DAY-1) * ONE_DAY_TIME)){
-//                  Request delReq = new Request.Builder()
-//                    .url(elasticsearchHost+"/"+value)
-//                    .delete()
-//                    .build();
-//
-//                  Call delCall = okHttpClient.newCall(request);
+                  Request delReq = new Request.Builder()
+                    .url(elasticsearchHost+"/"+value)
+                    .delete()
+                    .build();
+
+                  Call delCall = okHttpClient.newCall(delReq);
+                  try {
+                    Response delRes = delCall.execute();
+                    System.out.println("delete index:"+value+", success. "+delRes);
+                  } catch (IOException e) {
+                    e.printStackTrace();
+                  }
                 }
 
               } catch (ParseException e) {
