@@ -96,6 +96,13 @@ public class ZipkinServerConfiguration implements WebMvcConfigurer {
   }
 
   @Bean
+  public CleanDataJob cleanDataJob() {
+    CleanDataJob cleanDataJob = new CleanDataJob();
+    cleanDataJob.run();
+    return cleanDataJob;
+  }
+
+  @Bean
   public MeterRegistryCustomizer meterRegistryCustomizer() {
     return registry -> registry.config()
       .meterFilter(MeterFilter.deny(id -> {
