@@ -27,7 +27,7 @@ public class CleanDataJob {
 
   private static long ONE_DAY_TIME = 24*60*60*1000;//一天的毫秒数
 
-  @Value("${zipkin.elasticsearch.hosts}")
+  @Value("${zipkin.storage.elasticsearch.hosts}")
   private String elasticsearchHost;
 
   ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
