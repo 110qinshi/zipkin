@@ -14,6 +14,8 @@
 package zipkin.server.internal;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -151,15 +153,21 @@ public class ZipkinQueryApiV1 {
       for(String service : serveiceNames.getBody()) {
         int index = service.indexOf("#");
         if(index != -1){
+          try {
+            URL url = new URL(service.substring(index+1));
+          } catch (MalformedURLException e) {
+            e.printStackTrace();
+            continue;
+          }
           Map<String, Object> map = new HashMap<>();
           map.put("service", service);
-
-          Request request = new Request.Builder()
-            .url("http://"+service.substring(index+1)+"/health")
-            .build();
-
-          Call call = okHttpClient.newCall(request);
           try {
+            Request request = new Request.Builder()
+              .url("http://"+service.substring(index+1)+"/health")
+              .build();
+
+            Call call = okHttpClient.newCall(request);
+
             Response res = call.execute();
             if(res.code() == org.apache.http.HttpStatus.SC_OK){
               String respBody = res.body().string();
