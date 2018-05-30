@@ -133,9 +133,9 @@ public class ZipkinQueryApiV1 {
 
   OkHttpClient.Builder builder = new OkHttpClient.Builder();
   {
-    builder.connectTimeout(2000, TimeUnit.MILLISECONDS);
-    builder.readTimeout(2000, TimeUnit.MILLISECONDS);
-    builder.writeTimeout(2000, TimeUnit.MILLISECONDS);
+    builder.connectTimeout(1000, TimeUnit.MILLISECONDS);
+    builder.readTimeout(1000, TimeUnit.MILLISECONDS);
+    builder.writeTimeout(1000, TimeUnit.MILLISECONDS);
   }
 
   OkHttpClient okHttpClient = builder.build();
@@ -154,9 +154,11 @@ public class ZipkinQueryApiV1 {
         int index = service.indexOf("#");
         if(index != -1){
           try {
-            URL url = new URL(service.substring(index+1));
-          } catch (MalformedURLException e) {
-            e.printStackTrace();
+            String ipPort = service.substring(index+1);
+            if(ipPort.indexOf("-") != -1){
+              continue;
+            }
+          } catch (Exception e) {
             continue;
           }
           Map<String, Object> map = new HashMap<>();
