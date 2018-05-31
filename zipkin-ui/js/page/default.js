@@ -10,7 +10,6 @@ import SpanNameUI from '../component_ui/spanName';
 import LookbackUI from '../component_ui/lookback';
 import InfoPanelUI from '../component_ui/infoPanel';
 import InfoButtonUI from '../component_ui/infoButton';
-import JsonPanelUI from '../component_ui/jsonPanel';
 import TraceFiltersUI from '../component_ui/traceFilters';
 import TracesUI from '../component_ui/traces';
 import TimeStampUI from '../component_ui/timeStamp';
