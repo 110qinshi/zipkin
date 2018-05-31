@@ -82,7 +82,6 @@ const DefaultPageComponent = component(function DefaultPage() {
       LookbackUI.attachTo('#lookback');
       InfoPanelUI.attachTo('#infoPanel');
       InfoButtonUI.attachTo('button.info-request');
-      JsonPanelUI.attachTo('#jsonPanel');
       TraceFiltersUI.attachTo('#trace-filters');
       TracesUI.attachTo('#traces');
       TimeStampUI.attachTo('#end-ts');
