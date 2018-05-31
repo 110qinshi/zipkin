@@ -10,6 +10,7 @@ import SpanNameUI from '../component_ui/spanName';
 import LookbackUI from '../component_ui/lookback';
 import InfoPanelUI from '../component_ui/infoPanel';
 import InfoButtonUI from '../component_ui/infoButton';
+import JsonPanelUI from '../component_ui/jsonPanel';
 import TraceFiltersUI from '../component_ui/traceFilters';
 import TracesUI from '../component_ui/traces';
 import TimeStampUI from '../component_ui/timeStamp';
@@ -81,11 +82,6 @@ const DefaultPageComponent = component(function DefaultPage() {
       LookbackUI.attachTo('#lookback');
       InfoPanelUI.attachTo('#infoPanel');
       InfoButtonUI.attachTo('button.info-request');
-      TraceFiltersUI.attachTo('#trace-filters');
-      TracesUI.attachTo('#traces');
-      TimeStampUI.attachTo('#end-ts');
-      TimeStampUI.attachTo('#start-ts');
-      BackToTop.attachTo('#backToTop');
       i18nInit('traces');
 
       $('.timeago').timeago();
@@ -96,6 +92,12 @@ const DefaultPageComponent = component(function DefaultPage() {
                                             obj: modelView.rawResponse,
                                             link: modelView.apiURL});
       });
+      JsonPanelUI.attachTo('#jsonPanel');
+      TraceFiltersUI.attachTo('#trace-filters');
+      TracesUI.attachTo('#traces');
+      TimeStampUI.attachTo('#end-ts');
+      TimeStampUI.attachTo('#start-ts');
+      BackToTop.attachTo('#backToTop');
     });
 
     DefaultData.attachTo(document);
